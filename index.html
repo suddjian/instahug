@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instahug.me</title>
+  </head>
+  <body>
+    <h1 id="hug">Send someone in need a virtual hug.</h1>
+    <label for="name">Name of Huggee</label>
+    <input type="text" name="name" id="name">
+    <button onclick="hug()">Hug!</button>
+    <ol id="hugs"></ol>
+    <script>
+      function hug() {
+        const hugs = document.getElementById('hugs');
+        const li = document.createElement('li');
+        const name = document.getElementById('name').value;
+        const a = document.createElement('a');
+        a.href=`/hug.html?name=${name}`;
+        a.textContent = a.href;
+        li.appendChild(a)
+        hugs.appendChild(li);
+      }
+      document.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') hug();
+      })
+    </script>
+  </body>
+</html>
