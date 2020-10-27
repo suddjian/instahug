@@ -11,10 +11,6 @@
     <ol id="hugs"></ol>
 
     <script>
-      const userPromise = new Promise(resolve => {
-        window.onUserReady = resolve
-      });
-
       function hug() {
         const hugs = document.getElementById('hugs');
         const li = document.createElement('li');
@@ -24,25 +20,11 @@
         a.textContent = a.href;
         li.appendChild(a)
         hugs.appendChild(li);
-
-        userPromise.then((user) => {
-          window.firestore.collection("hugs").doc().set({
-            user: user.uid,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          });
-        });
       }
 
       document.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') hug();
       })
-    </script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-    <script defer src="./init.js">
     </script>
   </body>
 </html>
